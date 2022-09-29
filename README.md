@@ -1,1 +1,1 @@
-# bd-jogos
+O site pode ser visualizado pelo link https://lucasmromao.github.io/bd-jogos/
