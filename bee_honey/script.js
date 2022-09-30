@@ -30,6 +30,12 @@ document.addEventListener("keyup", function(event){
   }
 });
 
+document.addEventListener("click", (event) => {
+  if(event.x > 0 && event.y < 400){
+    bee.x = event.x;
+  }
+});
+
 function gameover(){
   if(bee.lifes <= 0){
     playing = false;
