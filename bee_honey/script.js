@@ -31,7 +31,7 @@ document.addEventListener("keyup", function(event){
 });
 
 document.addEventListener("click", (event) => {
-  if(event.x > 0 && event.y < 400){
+  if(event.x > 0 && event.x < 400){
     bee.x = event.x;
   }
 });
