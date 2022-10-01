@@ -98,9 +98,9 @@ function checkClick(x, y){
 
 function draw(){
     canvas.clearRect(0, 0, 511, 511);
-    for(var i in cards){
-        cards[i].draw();
-    }
+    cards.forEach((element, index, cards) => {
+        element.draw();
+    });
 }
 
 function update(){
