@@ -7,6 +7,8 @@ let score_text = new Text();
 let card_selected1 = false;
 let card_selected2 = false;
 let selected = false;
+let marginWidthSize = (window.innerWidth - 511) / 2;
+let marginHeightSize = (window.innerHeight - 511) / 2;
 
 for(var i = 1; i<= 50; i++){
     card_options.push(i);
@@ -43,7 +45,12 @@ document.addEventListener("click", (event) => {
             cards[card].revealed = false;
         }*/
     }
-})
+});
+
+addEventListener("resize", (event) => {
+    marginWidthSize = (window.innerWidth - 511) / 2;
+    marginHeightSize = (window.innerHeight - 511) / 2;
+});
 
 function checkSelection(){
     if(card_selected1 && card_selected2){
@@ -70,8 +77,10 @@ function checkSelection(){
 }
 
 function checkClick(x, y){
-    x -= 428;
-    y -= 57; //Arrumar depois
+    //x -= 428;
+    x -= marginWidthSize;
+    //y -= 57; //Arrumar depois
+    y -= marginHeightSize;
 
     let click = false;
 
