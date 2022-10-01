@@ -1,3 +1,8 @@
+const GAMETYPE = {
+    POINTS: 0,
+    TIME: 1
+}
+
 class Obj{
     frame = 0;
     timer = 0;
@@ -44,14 +49,29 @@ class Obj{
           return false;
         }
     }
+
+    collideClick(x, y){
+        if(this.x <= x &&
+            this.x + this.width >= x &&
+            this.y <= y &&
+            this.y + this.height >= y)
+        {
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
 
 class Text{
     text = "";
-    
-    draw_text(size, font, x, y, color){
+
+    draw_text(size, font, x, y, color, stroke = false){
         canvas.font = size + "px " + font;
         canvas.fillStyle = color;
+        canvas.lineWidth = 3; //Define a espessura do contorno do texto
+        canvas.strokeStyle = 'black';
+        if(stroke) canvas.strokeText(this.text, x, y);
         canvas.fillText(this.text, x, y);
     }
 }
