@@ -111,7 +111,7 @@ function checkClick(x, y){
     x -= marginWidthSize;
     y -= marginHeightSize;
 
-    alert("marginHeightSize: " + marginHeightSize + "\n" + "y: " + y);
+    alert("window.innerHeight: " + window.innerHeight + "\nmarginHeightSize: " + marginHeightSize + "\n" + "y: " + y);
 
     let click = false;
 
