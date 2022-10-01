@@ -111,6 +111,8 @@ function checkClick(x, y){
     x -= marginWidthSize;
     y -= marginHeightSize;
 
+    alert("marginHeightSize: " + marginHeightSize + "\n" + "y: " + y);
+
     let click = false;
 
     for(var i in cards){
@@ -143,7 +145,7 @@ function update(){
     timerText += ":";
     timerText += (timer_seconds < 10) ? "0" + timer_seconds : timer_seconds;
 
-    score_text.text = "Score: " + score;
+    score_text.text = "Pontuação: " + score;
     score_text.draw_text(20, "Arial", 10, 25, "yellow");
     timer_text.text = timerText;
     timer_text.draw_text(20, "Arial", 420, 25, "yellow");
