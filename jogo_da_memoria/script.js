@@ -82,6 +82,9 @@ function sortCards(){
             cards.push(card);
         }
     }
+
+    card_selected1 = false;
+    card_selected2 = false;
 }
 
 function checkSelection(){
