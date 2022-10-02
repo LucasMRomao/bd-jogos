@@ -16,6 +16,8 @@ let marginHeightSize = (window.innerHeight - 550) / 2;
 let tipo_jogo = GAMETYPE.POINTS;
 let jogando = true;
 
+let rollingBack = false;
+
 let pointsType_image = new Obj(150, 5, 100, 30, "assets/tipo_pontos.png");
 let timerType_image = new Obj(260, 5, 100, 30, "assets/tipo_tempo.png");
 
@@ -64,6 +66,20 @@ addEventListener("resize", (event) => {
     marginHeightSize = (window.innerHeight - 550) / 2;
 });
 
+function rollBack(){
+    if(card_selected1){
+        cards[card_selected1].image = "assets/background.png";
+        cards[card_selected1].revealed = false;
+    }
+    if(card_selected2){
+        cards[card_selected2].image = "assets/background.png";
+        cards[card_selected2].revealed = false;
+    }
+    card_selected1 = false;
+    card_selected2 = false;
+    selected = false;
+}
+
 function sortCards(){
 
     cards = new Array();
@@ -97,14 +113,8 @@ function checkSelection(){
             selected = false;
             score++;
         }else{
-            setTimeout(function(){
-                cards[card_selected1].image = "assets/background.png";
-                cards[card_selected1].revealed = false;
-                cards[card_selected2].image = "assets/background.png";
-                cards[card_selected2].revealed = false;
-                card_selected1 = false;
-                card_selected2 = false;
-                selected = false;
+            rollingBack = setTimeout(function(){
+                rollBack();
             }, 1500);
         }
     }
@@ -174,6 +184,11 @@ function start(){
             timer_minutes = 0;
             timer_seconds = 0;
             score = 0;
+            if(rollingBack){
+                clearTimeout(rollingBack);
+                rollBack();
+                rollingBack = false;   
+            }
             break;
         
         case GAMETYPE.TIME:
@@ -181,6 +196,11 @@ function start(){
             timer_minutes = 5;
             timer_seconds = 0;
             score = 0;
+            if(rollingBack){
+                clearTimeout(rollingBack);
+                rollBack();
+                rollingBack = false;
+            }
             break;
     }
 }
