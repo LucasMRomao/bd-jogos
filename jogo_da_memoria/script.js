@@ -11,8 +11,6 @@ let timer_hours = 0;
 let card_selected1 = false;
 let card_selected2 = false;
 let selected = false;
-let marginWidthSize = (window.innerWidth - 511) / 2;
-let marginHeightSize = (window.innerHeight - 550) / 2;
 let tipo_jogo = GAMETYPE.POINTS;
 let jogando = true;
 
@@ -62,8 +60,7 @@ document.addEventListener("click", (event) => {
 });
 
 addEventListener("resize", (event) => {
-    marginWidthSize = (window.innerWidth - 511) / 2;
-    marginHeightSize = (window.innerHeight - 550) / 2;
+
 });
 
 function rollBack(){
@@ -138,9 +135,6 @@ function draw(){
         element.draw();
     });
 
-    /*pointsType_text.draw_text(20, "Arial", 150, 25, "red", true);
-    timerType_text.draw_text(20, "Arial", 260, 25, "red", true);*/
-
     pointsType_image.draw();
     timerType_image.draw();
 }
@@ -184,24 +178,20 @@ function start(){
             timer_minutes = 0;
             timer_seconds = 0;
             score = 0;
-            if(rollingBack){
-                clearTimeout(rollingBack);
-                rollBack();
-                rollingBack = false;   
-            }
             break;
         
         case GAMETYPE.TIME:
             timer_hours = 0;
-            timer_minutes = 5;
-            timer_seconds = 0;
+            timer_minutes = 0;
+            timer_seconds = 15;
             score = 0;
-            if(rollingBack){
-                clearTimeout(rollingBack);
-                rollBack();
-                rollingBack = false;
-            }
             break;
+    }
+
+    if(rollingBack){
+        clearTimeout(rollingBack);
+        rollingBack = false;
+        rollBack();
     }
 
     jogando = true;
@@ -212,8 +202,8 @@ function main(){
         draw();
         update();
         checkWin();
-        requestAnimationFrame(main);
     }
+    requestAnimationFrame(main);
 }
 
 sortCards();
