@@ -182,8 +182,8 @@ function start(){
         
         case GAMETYPE.TIME:
             timer_hours = 0;
-            timer_minutes = 0;
-            timer_seconds = 15;
+            timer_minutes = 5;
+            timer_seconds = 0;
             score = 0;
             break;
     }
