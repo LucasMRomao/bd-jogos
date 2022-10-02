@@ -21,7 +21,7 @@ let timerType_image = new Obj(260, 5, 100, 30, "assets/tipo_tempo.png");
 
 document.addEventListener("click", (event) => {
     if(!selected){
-        let card = checkClick(event.x, event.y);
+        let card = checkClick(event.offsetX, event.offsetY);
         if(card && !cards[card].revealed){
             cards[card].image = "assets/" + cards[card].card_selection + ".png";
             cards[card].revealed = true;
@@ -40,7 +40,7 @@ document.addEventListener("click", (event) => {
         }*/
     }
 
-    if(pointsType_image.collideClick(event.x - marginWidthSize, event.y - marginHeightSize)){
+    if(pointsType_image.collideClick(event.offsetX, event.offsetY)){
         let confirmar = confirm("Deseja realmente trocar o tipo de jogo? (O jogo será reiniciado!)");
 
         if(confirmar){
@@ -48,7 +48,7 @@ document.addEventListener("click", (event) => {
             sortCards();
             start();
         }
-    }else if(timerType_image.collideClick(event.x - marginWidthSize, event.y - marginHeightSize)){
+    }else if(timerType_image.collideClick(event.offsetX, event.offsetY)){
         let confirmar = confirm("Deseja realmente trocar o tipo de jogo? (O jogo será reiniciado!)");
 
         if(confirmar){
@@ -111,11 +111,6 @@ function checkSelection(){
 }
 
 function checkClick(x, y){
-    x -= marginWidthSize;
-    y -= marginHeightSize;
-
-    //alert("window.innerHeight: " + window.innerHeight + "\nmarginHeightSize: " + marginHeightSize + "\n" + "y: " + y);
-
     let click = false;
 
     for(var i in cards){
