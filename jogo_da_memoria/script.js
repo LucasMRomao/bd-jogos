@@ -203,6 +203,8 @@ function start(){
             }
             break;
     }
+
+    jogando = true;
 }
 
 function main(){
