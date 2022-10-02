@@ -3,7 +3,7 @@ canvas.imageSmoothingEnabled = false; //Tira a "suavização" dos pixels renderi
 
 var currentScene = {};
 
-var player = new Player(0, 0, 153.5, 141, "assets/FlatBoy/Forward/Idle1.png");
+var player = new Player(0, 600 - (141), 153.5, 141, "assets/FlatBoy/Forward/Idle1.png");
 
 var game = {
     status_changed: false,
@@ -15,6 +15,7 @@ var game = {
                 if(!this.status_changed){
                     player.change_status(PLAYERSTATUS.WALKING);
                     this.status_changed = true;
+                    player.current_walking = PLAYERSTATUS.WALKING;
                 }
                 break;
             
@@ -33,11 +34,12 @@ var game = {
     
             case 'w':
                 if(!this.status_changed){
-                    player.frame = 1;
-                    player.is_jumping = true;
-                    player.change_status(PLAYERSTATUS.JUMPING);
-                    this.status_changed = true;
+                    
                 }
+                player.frame = 1;
+                player.is_jumping = true;
+                player.change_status(PLAYERSTATUS.JUMPING);
+                this.status_changed = true;
                 break;
         }
     },

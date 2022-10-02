@@ -97,20 +97,38 @@ class Player extends Obj{
     current_frame = "Idle";
     current_direction = "Forward";
     is_jumping = false;
+    current_status = PLAYERSTATUS.STOPPED;
 
     move(game){
         this.x += this.direction;
 
+        if(this.x < 0){
+            this.x = 0;
+        }else if(this.x > 500 - this.width){
+            this.x = 500 - this.width;
+        }
+
+        if(this.y > 600 - this.height){
+            this.y = 600 - this.height;
+        }
+
         if(this.is_jumping){
             if(this.frame < 8){
+                console.log("pulando " + this.status);
                 this.y--;
             }else if(this.frame < 15){
+                console.log("caindo " + this.status);
                 this.y++;
             }else{
+                console.log("fim do pulo " + this.status);
                 this.is_jumping = false;
-                this.change_status(PLAYERSTATUS.STOPPED);
                 game.status_changed = false;
+                this.change_status(this.current_status);
             }
+        }else{
+            console.log(this.status);
+            this.current_status = this.status;
+            this.change_status(this.current_status);
         }
     }
 
