@@ -112,22 +112,18 @@ class Player extends Obj{
         if(this.y > 600 - this.height){
             this.y = 600 - this.height;
         }
-        //console.log(this.frame);
+        
         if(this.is_jumping){
             if(this.frame < 8){
-                //console.log("pulando " + this.status);
                 this.y--;
             }else if(this.frame < 15){
-                //console.log("caindo " + this.status);
                 this.y++;
             }else{
-                //console.log("fim do pulo " + this.status);
                 this.is_jumping = false;
                 game.status_changed = false;
                 this.change_status(this.current_status);
             }
         }else{
-            //console.log(this.status);
             this.current_status = this.walking ? this.status : PLAYERSTATUS.STOPPED;
             this.change_status(this.current_status);
         }
