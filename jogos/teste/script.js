@@ -11,9 +11,10 @@ var game = {
         switch(key){
             case 'a':
                 player.direction = -1;
+                player.walking = true;
                 player.change_direction("Backward");
                 if(!this.status_changed){
-                    player.change_status(PLAYERSTATUS.WALKING);
+                    if(!player.is_jumping) player.change_status(PLAYERSTATUS.WALKING);
                     this.status_changed = true;
                     player.current_walking = PLAYERSTATUS.WALKING;
                 }
@@ -25,17 +26,15 @@ var game = {
     
             case 'd':
                 player.direction = 1;
+                player.walking = true;
                 player.change_direction("Forward");
                 if(!this.status_changed){
-                    player.change_status(PLAYERSTATUS.WALKING);
+                    if(!player.is_jumping) player.change_status(PLAYERSTATUS.WALKING);
                     this.status_changed = true;
                 }
                 break;
     
             case 'w':
-                if(!this.status_changed){
-                    
-                }
                 player.frame = 1;
                 player.is_jumping = true;
                 player.change_status(PLAYERSTATUS.JUMPING);
@@ -47,8 +46,9 @@ var game = {
         switch(key){
             case 'a':
                 player.direction = 0;
+                player.walking = false;
                 if(this.status_changed){
-                    player.change_status(PLAYERSTATUS.STOPPED);
+                    if(!player.is_jumping) player.change_status(PLAYERSTATUS.STOPPED);
                     this.status_changed = false;
                 }
                 break;
@@ -59,8 +59,9 @@ var game = {
     
             case 'd':
                 player.direction = 0;
+                player.walking = false;
                 if(this.status_changed){
-                    player.change_status(PLAYERSTATUS.STOPPED);
+                    if(!player.is_jumping) player.change_status(PLAYERSTATUS.STOPPED);
                     this.status_changed = false;
                 }
                 break;
@@ -104,6 +105,7 @@ function main(){
     currentScene.draw();
     currentScene.update();
     requestAnimationFrame(main);
+    //console.log(player.walking);
 }
 
 changeScene(game);

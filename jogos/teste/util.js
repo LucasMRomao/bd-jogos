@@ -98,6 +98,7 @@ class Player extends Obj{
     current_direction = "Forward";
     is_jumping = false;
     current_status = PLAYERSTATUS.STOPPED;
+    walking = false;
 
     move(game){
         this.x += this.direction;
@@ -111,23 +112,23 @@ class Player extends Obj{
         if(this.y > 600 - this.height){
             this.y = 600 - this.height;
         }
-
+        //console.log(this.frame);
         if(this.is_jumping){
             if(this.frame < 8){
-                console.log("pulando " + this.status);
+                //console.log("pulando " + this.status);
                 this.y--;
             }else if(this.frame < 15){
-                console.log("caindo " + this.status);
+                //console.log("caindo " + this.status);
                 this.y++;
             }else{
-                console.log("fim do pulo " + this.status);
+                //console.log("fim do pulo " + this.status);
                 this.is_jumping = false;
                 game.status_changed = false;
                 this.change_status(this.current_status);
             }
         }else{
-            console.log(this.status);
-            this.current_status = this.status;
+            //console.log(this.status);
+            this.current_status = this.walking ? this.status : PLAYERSTATUS.STOPPED;
             this.change_status(this.current_status);
         }
     }
